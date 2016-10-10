@@ -1,0 +1,14 @@
+{% extends 'rango/base_bootstrap.html' %}
+{% load bootstrap_toolkit %}
+{% block title %}Add category{% endblock %}
+
+{% block body_block %}
+    <form role="form" id="category_form" method="post" action="{% url 'rango:add_category' %}">
+        <h2 class="form-singin-heading">Add a Category</h2>
+        {% csrf_token %}
+        {{ form|as_bootstrap }}
+
+        <button class="btn btn-primary" type="submit" name="submit">Add category</button>
+    </form>
+{% endblock %}
+

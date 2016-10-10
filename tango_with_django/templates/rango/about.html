@@ -1,0 +1,9 @@
+{% extends 'rango/base_bootstrap.html' %}
+{% load staticfiles %}
+{% block title_block %}
+ABOUT
+{% endblock %}
+{% block body_block %}
+<h1>This page made by <a href="/">RAVEN</a></h1>
+<h2>You are visited this site {{ visits }} time{{ visits|pluralize }}</h2>
+{% endblock %}
