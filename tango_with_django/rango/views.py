@@ -6,6 +6,7 @@ from rango.models import Category, Page
 from django.contrib.auth import authenticate, login, logout
 from django.http import HttpResponse, HttpResponseRedirect
 from django.contrib.auth.decorators import login_required
+from rango.bing_search import run_query
 
 
 def get_server_side_cookie(request, cookie, default_val=None):
@@ -171,7 +172,17 @@ def user_logout(request):
     return HttpResponseRedirect(reverse('rango:index'))
 
 
+def search(request):
+    result_list = []
+    context_dict = {}
+    if request.method == "POST":
+        query = request.POST['query'].strip()
+        context_dict['query'] = query
+        if query:
+            result_list = run_query(query)
+            context_dict['result_list'] = result_list
 
+    return render(request, 'rango/search.html', context_dict)
 
 
 
